@@ -1,0 +1,29 @@
+# Pocket-FT8
+A pocket sized FT8 Transceiver utilizing Teensy 3.6, Si4735 and Si5351 technology.
+
+Pocket FT8: A Palm Size FT 8 Transceiver
+
+Scope
+This document is written to help you build your own self contained FT8 Rig. Listed below are the main features of the project.
+
+Small Size, 3.5” X 2.75” X 1.125”
+100 mW power output @ 50 ohm load
+1 uVolt Receiver Sensitivity
+Single 5 volt power input, battery or wall wart
+Silicon Labs Technology, Si4735 SSB Receiver & Si5351 Transmit FSK Clock
+SD Card Contact Logging
+320 X 480 Resistive  Color Touch Screen
+
+Attributions
+This project is based on two significant software projects:
+
+ Si4735 Library developed by Ricardo Caritti: https://github.com/pu2clr/SI4735
+
+ FT8 Decoding Library by Karlis Goba: https://github.com/kgoba/ft8_lib
+
+DSP Audio Architecture
+Decoding FT8 requires significant data storage and processing speed.
+
+In order to optimize both program storage and processing speed requirements so that the Teensy 3.6 is not over taxed, the Teensy Audio Library has been modified to allow Analog to Digital conversion to be run at the rate of 6400 samples per second. This allows audio data processing to be done at 3200 Hz. The 3200 Hz audio processing with a 2048 FTT to process the received audio for FT8 decoding yields a bin spacing of 3.125 Hz.
+
+The algorithms developed by Karlis Goba use the 3.125 Hz spaced FFT bins to be screened in both frequency and time so that errors in symbol frequency and time reception  can be overcome to provide really great FT8 decoding. The end spacing of the FT8 algorithms is 6.25 Hz.
